@@ -40,7 +40,7 @@
 
     <jar destfile="${dist}/iqoras-cli.jar" filesetmanifest="mergewithoutmain">
       <manifest>
-        <attribute name="Main-Class" value="IncSingleEx"/>
+        <attribute name="Main-Class" value="MyIqarosCLI"/>
         <attribute name="Built-By" value="${user.name}" />
         <attribute name="Class-Path" value="${manifest_cp}"/>
       </manifest>
