@@ -1,0 +1,2 @@
+Q(?0) <- Device(?0), assistsWith(?0,?1)
+

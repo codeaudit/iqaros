@@ -1,0 +1,7 @@
+.svn
+bin
+dist
+.project
+.settings
+.DS_Store
+catalog-v*.xml
