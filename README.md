@@ -1,6 +1,6 @@
 This is an unofficial repository of IQAROS reasoner.
 
-Official REQUIEM site: <http://code.google.com/p/iqaros/>
+Official IQAROS site: <http://code.google.com/p/iqaros/>
 
 Usage: 
 
