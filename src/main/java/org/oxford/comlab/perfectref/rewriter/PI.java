@@ -28,4 +28,9 @@ public class PI {
     	this.m_left = left;
     	this.m_right = right;
     }
+    
+    public String toString()
+    {
+    	return m_type + ": " + m_left + " -> " + m_right;
+    }
 }

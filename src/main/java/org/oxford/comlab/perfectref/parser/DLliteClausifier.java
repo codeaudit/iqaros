@@ -102,6 +102,11 @@ public class DLliteClausifier {
 		for(OWLClassExpression[] axiom: oa.m_conceptInclusions)
 		addClauses(axiom);
 		// TODO Auto-generated method stub
+		System.err.println("axioms:  " + axioms.size());
+		for (PI pi: axioms)
+		{
+			System.err.println(pi.toString());
+		}
 		return axioms;
 	}
 	
