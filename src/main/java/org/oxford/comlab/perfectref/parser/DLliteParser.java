@@ -11,12 +11,17 @@ import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.oxford.comlab.perfectref.rewriter.PI;
 import org.oxford.comlab.perfectref.rewriter.Clause;
-import org.semanticweb.HermiT.Reasoner.Configuration;
-import org.semanticweb.HermiT.owlapi.structural.OwlNormalization;
-import org.semanticweb.owl.apibinding.OWLManager;
-import org.semanticweb.owl.model.OWLException;
-import org.semanticweb.owl.model.OWLOntology;
-import org.semanticweb.owl.model.OWLOntologyManager;
+//import org.semanticweb.HermiT.Reasoner.Configuration;
+import org.semanticweb.HermiT.structural.OWLAxioms;
+import org.semanticweb.HermiT.structural.OWLNormalization;
+import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.OWLAxiom;
+import org.semanticweb.owlapi.model.OWLException;
+import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.reasoner.structural.StructuralReasoner;
+//import org.semanticweb.owlapi.model.OWLOntologyManager;
 
 
 /**
@@ -38,19 +43,25 @@ public class DLliteParser {
 	{
 		//Create ontology manager and load ontology (OWL API)
 		OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
-		URI physicalURI = URI.create(path);
-        ontology = manager.loadOntologyFromPhysicalURI(physicalURI);
-
+		IRI physicalURI = IRI.create(path);
+        ontology = manager.loadOntologyFromOntologyDocument(physicalURI);
+        System.err.println(ontology.getAxiomCount());
+        for (OWLAxiom oa: ontology.getAxioms())
+        {
+        	System.err.println(oa);
+        }
+        OWLAxioms oa = new OWLAxioms();
         //Normalize ontology (HermiT)
-        OwlNormalization normalization = new OwlNormalization(manager.getOWLDataFactory());
-        normalization.processOntology(new Configuration(), ontology);
-
+        OWLNormalization normalization = new OWLNormalization(manager.getOWLDataFactory(), oa, 0);
+        normalization.processOntology(ontology);
+        System.err.println(oa.m_classes.size());
+        
         //Clausify ontology
         DLliteClausifier clausification = new DLliteClausifier();
-        ArrayList<PI> axioms = clausification.getAxioms(normalization);
+        ArrayList<PI> axioms = clausification.getAxioms(ontology);
 
         //Remove ontology from the ontology manager
-        manager.removeOntology(ontology.getURI());
+        manager.removeOntology(ontology);
 
 		return axioms;
 	}
@@ -215,11 +226,11 @@ public class DLliteParser {
 	}
 
 	public int getNumberOfConcepts(){
-		return ontology == null? null: ontology.getReferencedClasses().size();
+		return ontology == null? null: ontology.getClassesInSignature().size();
 	}
 
 	public int getNumberOfRoles(){
-		return ontology == null? null: ontology.getReferencedObjectProperties().size();
+		return ontology == null? null: ontology.getObjectPropertiesInSignature().size();
 	}
 
 }

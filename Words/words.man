@@ -1,0 +1,537 @@
+
+Ontology: <words>
+    
+ObjectProperty: lemon:example
+
+    SubPropertyOf: 
+        diamant:attestation
+    
+    
+ObjectProperty: lemon:isLexicalizedSenseOf
+
+    SubPropertyOf: 
+        lemon:reference
+    
+    Domain: 
+        lemon:LexicalSense
+    
+    InverseOf: 
+        lemon:lexicalizedSense
+    
+    
+ObjectProperty: diamant:author
+
+    SubPropertyOf: 
+        <http://dublincore.org/2012/06/14/dcterms.ttlcreator>
+    
+    Domain: 
+        <http://dublincore.org/2012/06/14/dcterms.ttlBibliographicResource>
+    
+    Range: 
+        <http://dublincore.org/2012/06/14/dcterms.ttlAgent>
+    
+    
+ObjectProperty: lemon:lexicalizedSense
+
+    InverseOf: 
+        lemon:isLexicalizedSenseOf
+    
+    
+ObjectProperty: core:closeMatch
+
+    EquivalentTo: 
+        diamant:synonym
+    
+    
+ObjectProperty: lemon:reference
+
+    Domain: 
+        lemon:LexicalSense
+    
+    Range: 
+        lemon:LexicalConcept,
+        core:Concept
+    
+    
+ObjectProperty: <http://dublincore.org/2012/06/14/dcterms.ttlcreator>
+
+    Domain: 
+        <http://dublincore.org/2012/06/14/dcterms.ttlBibliographicResource>
+    
+    Range: 
+        <http://dublincore.org/2012/06/14/dcterms.ttlAgent>
+    
+    
+ObjectProperty: core:semanticRelation
+
+    Domain: 
+        core:Concept
+    
+    Range: 
+        core:Concept
+    
+    
+ObjectProperty: diamant:hyperonym
+
+    SubPropertyOf: 
+        core:semanticRelation
+    
+    EquivalentTo: 
+        core:broader
+    
+    
+ObjectProperty: diamant:antonym
+
+    SubPropertyOf: 
+        core:semanticRelation
+    
+    
+ObjectProperty: diamant:witness
+
+    Domain: 
+        diamant:Text
+    
+    Range: 
+        diamant:Text
+    
+    
+ObjectProperty: diamant:attestation
+
+    Domain: 
+        diamant:LexicalPhenomenon
+    
+    Range: 
+        diamant:Locus
+    
+    
+ObjectProperty: diamant:synonym
+
+    SubPropertyOf: 
+        core:semanticRelation
+    
+    EquivalentTo: 
+        core:closeMatch
+    
+    
+ObjectProperty: lemon:sense
+
+    Domain: 
+        lemon:LexicalEntry,
+        lemon:LexicalSense
+    
+    Range: 
+        lemon:LexicalSense
+    
+    
+ObjectProperty: lemon:subsense
+
+    Characteristics: 
+        Transitive
+    
+    
+ObjectProperty: diamant:text
+
+    Domain: 
+        diamant:Locus
+    
+    Range: 
+        diamant:Text
+    
+    
+ObjectProperty: <http://dublincore.org/2012/06/14/dcterms.ttlspatial>
+
+    Domain: 
+        <http://dublincore.org/2012/06/14/dcterms.ttlBibliographicResource>
+    
+    Range: 
+        <http://dublincore.org/2012/06/14/dcterms.ttlLocation>
+    
+    
+ObjectProperty: diamant:hyponym
+
+    SubPropertyOf: 
+        core:semanticRelation
+    
+    EquivalentTo: 
+        core:narrower
+    
+    
+ObjectProperty: lemon:hasForm
+
+    Domain: 
+        lemon:LexicalEntry
+    
+    Range: 
+        lemon:Form
+    
+    
+ObjectProperty: core:broader
+
+    EquivalentTo: 
+        diamant:hyperonym
+    
+    
+ObjectProperty: core:narrower
+
+    EquivalentTo: 
+        diamant:hyponym
+    
+    
+ObjectProperty: lexinfo:partOfSpeech
+
+    Domain: 
+        diamant:Word
+    
+    Range: 
+        lexinfo:PartOfSpeech
+    
+    
+ObjectProperty: <http://dublincore.org/2012/06/14/dcterms.ttltemporal>
+
+    Domain: 
+        <http://dublincore.org/2012/06/14/dcterms.ttlBibliographicResource>
+    
+    Range: 
+        <http://dublincore.org/2012/06/14/dcterms.ttlPeriodOfTime>
+    
+    
+DataProperty: <http://dublincore.org/2012/06/14/dcterms.ttltitle>
+
+    Range: 
+        xsd:string
+    
+    
+DataProperty: <http://dublincore.org/2012/06/14/dcterms.ttlstartDate>
+
+    Range: 
+        xsd:date
+    
+    
+DataProperty: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-corebeginIndex>
+
+    EquivalentTo: 
+        diamant:start
+    
+    
+DataProperty: diamant:start
+
+    Characteristics: 
+        Functional
+    
+    Domain: 
+        diamant:Locus
+    
+    Range: 
+        xsd:integer
+    
+    EquivalentTo: 
+        <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-corebeginIndex>
+    
+    
+DataProperty: diamant:exampleText
+
+    Domain: 
+        diamant:Locus
+    
+    SubPropertyOf: 
+        lemon:value
+    
+    
+DataProperty: pwn:part_of_speech
+
+    Characteristics: 
+        Functional
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-coreendIndex>
+
+    EquivalentTo: 
+        diamant:end
+    
+    
+DataProperty: diamant:quotationText
+
+    Characteristics: 
+        Functional
+    
+    Domain: 
+        diamant:Quotation
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: diamant:endDate
+
+    Domain: 
+        <http://dublincore.org/2012/06/14/dcterms.ttlPeriodOfTime>
+    
+    
+DataProperty: diamant:hyphenation
+
+    Characteristics: 
+        Functional
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: diamant:startDate
+
+    Domain: 
+        <http://dublincore.org/2012/06/14/dcterms.ttlPeriodOfTime>
+    
+    
+DataProperty: diamant:end
+
+    Characteristics: 
+        Functional
+    
+    Domain: 
+        diamant:Locus
+    
+    Range: 
+        xsd:integer
+    
+    EquivalentTo: 
+        <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-coreendIndex>
+    
+    
+DataProperty: lemon:representation
+
+    Characteristics: 
+        Functional
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: <http://dublincore.org/2012/06/14/dcterms.ttlendDate>
+
+    Range: 
+        xsd:date
+    
+    
+DataProperty: rdfs:label
+
+    Characteristics: 
+        Functional
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: lemon:value
+
+    
+Class: owl:Thing
+
+    
+Class: lexinfo:PartOfSpeech
+
+    
+Class: lexinfo:male
+
+    EquivalentTo: 
+        diamant:mannelijk
+    
+    
+Class: lexinfo:neuter
+
+    EquivalentTo: 
+        diamant:onzijdig
+    
+    
+Class: diamant:werkwoord
+
+    EquivalentTo: 
+        diamant:ww
+    
+    
+Class: diamant:Locus
+
+    SubClassOf: 
+        lemon:UsageExample
+    
+    
+Class: <http://dublincore.org/2012/06/14/dcterms.ttlBibliographicResource>
+
+    
+Class: lemon:LexicalSense
+
+    SubClassOf: 
+        diamant:LexicalPhenomenon
+    
+    
+Class: diamant:vrouwelijk
+
+    EquivalentTo: 
+        lexinfo:female
+    
+    
+Class: <http://dublincore.org/2012/06/14/dcterms.ttlAgent>
+
+    
+Class: diamant:voorzetsel
+
+    EquivalentTo: 
+        lexinfo:adposition
+    
+    
+Class: diamant:LexicalPhenomenon
+
+    
+Class: lexinfo:conjunction
+
+    SubClassOf: 
+        diamant:closedWordClass
+    
+    
+Class: lexinfo:adposition
+
+    EquivalentTo: 
+        diamant:voorzetsel
+    
+    SubClassOf: 
+        diamant:closedWordClass
+    
+    
+Class: diamant:mannelijk
+
+    EquivalentTo: 
+        lexinfo:male
+    
+    
+Class: diamant:Text
+
+    SubClassOf: 
+        <http://dublincore.org/2012/06/14/dcterms.ttlBibliographicResource>
+    
+    
+Class: <http://dublincore.org/2012/06/14/dcterms.ttlPeriodOfTime>
+
+    
+Class: lexinfo:verb
+
+    EquivalentTo: 
+        diamant:ww
+    
+    
+Class: lemon:Form
+
+    SubClassOf: 
+        diamant:Word
+    
+    DisjointWith: 
+        lemon:LexicalEntry
+    
+    
+Class: diamant:znw
+
+    EquivalentTo: 
+        lexinfo:noun,
+        diamant:zelfstandig_naamwoord
+    
+    
+Class: diamant:openWordClass
+
+    
+Class: lemon:Word
+
+    SubClassOf: 
+        diamant:LexicalPhenomenon
+    
+    
+Class: diamant:ww
+
+    EquivalentTo: 
+        diamant:werkwoord,
+        lexinfo:verb
+    
+    
+Class: lexinfo:interjection
+
+    SubClassOf: 
+        diamant:closedWordClass
+    
+    
+Class: diamant:tweeslachtig
+
+    EquivalentTo: 
+        diamant:mannelijk
+         and diamant:vrouwelijk
+    
+    
+Class: diamant:Word
+
+    
+Class: diamant:closedWordClass
+
+    EquivalentTo: 
+        (lexinfo:adposition or lexinfo:conjunction or lexinfo:interjection or lexinfo:pronoun)
+    
+    
+Class: <http://dublincore.org/2012/06/14/dcterms.ttlLocation>
+
+    
+Class: diamant:zelfstandig_naamwoord
+
+    EquivalentTo: 
+        diamant:znw
+    
+    
+Class: core:Concept
+
+    
+Class: lexinfo:female
+
+    EquivalentTo: 
+        diamant:vrouwelijk
+    
+    
+Class: lemon:LexicalEntry
+
+    SubClassOf: 
+        diamant:Word,
+        lemon:hasForm min 1 owl:Thing
+    
+    DisjointWith: 
+        lemon:Form
+    
+    
+Class: lemon:UsageExample
+
+    
+Class: lexinfo:noun
+
+    EquivalentTo: 
+        diamant:znw
+    
+    
+Class: lexinfo:pronoun
+
+    SubClassOf: 
+        diamant:closedWordClass
+    
+    
+Class: lemon:LexicalConcept
+
+    SubClassOf: 
+        core:Concept
+    
+    
+Class: diamant:onzijdig
+
+    EquivalentTo: 
+        lexinfo:neuter
+    
+    
+Class: diamant:Quotation
+
+    SubClassOf: 
+        diamant:Text
+    
+    

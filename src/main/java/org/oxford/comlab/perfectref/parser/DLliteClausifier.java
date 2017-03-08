@@ -1,16 +1,34 @@
 package org.oxford.comlab.perfectref.parser;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import org.oxford.comlab.perfectref.rewriter.PI;
-import org.semanticweb.HermiT.owlapi.structural.OwlNormalization;
-import org.semanticweb.owl.model.OWLClass;
-import org.semanticweb.owl.model.OWLDescription;
-import org.semanticweb.owl.model.OWLIndividualAxiom;
-import org.semanticweb.owl.model.OWLObjectAllRestriction;
-import org.semanticweb.owl.model.OWLObjectComplementOf;
-import org.semanticweb.owl.model.OWLObjectPropertyExpression;
-import org.semanticweb.owl.model.OWLObjectSomeRestriction;
+
+import org.semanticweb.owlapi.model.OWLClass;
+//import org.semanticweb.owlapi.model.
+import org.semanticweb.owlapi.model.OWLIndividualAxiom;
+import org.semanticweb.owlapi.model.OWLObjectAllValuesFrom;
+//import org.semanticweb.owlapi.model.OWLObjectAllValuesFrom;
+//import org.semanticweb.owlapi.model;
+import org.semanticweb.owlapi.model.OWLObjectComplementOf;
+import org.semanticweb.owlapi.model.OWLObjectProperty;
+import org.semanticweb.owlapi.model.OWLObjectPropertyExpression;
+import org.semanticweb.owlapi.model.OWLObjectSomeValuesFrom;
+import org.semanticweb.owlapi.model.OWLClassExpression;
+//import org.semanticweb.owlapi.model.OWLObjectSomeValuesFrom;
+
+import org.semanticweb.HermiT.structural.OWLNormalization;
+
+import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.OWLSubClassOfAxiom;
+import org.semanticweb.owlapi.model.OWLSubObjectPropertyOfAxiom;
+import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.OWLAxiom;
+import org.semanticweb.owlapi.model.OWLException;
+import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.reasoner.structural.StructuralReasoner;
 
 public class DLliteClausifier {
 	private int artificialRoleIndex = 0;
@@ -31,7 +49,7 @@ public class DLliteClausifier {
 	 * @param normalization the set of axioms to be converted.
 	 * @return a set of clauses.
 	 */
-	public ArrayList<PI> getAxioms(OwlNormalization normalization)
+	public ArrayList<PI> getAxioms(OWLOntology normalization)
 	{
 		axioms = new ArrayList<PI>();
 
@@ -40,16 +58,66 @@ public class DLliteClausifier {
 //			System.err.println("Ignoring invalid individual axiom: " + axiom.toString());
 
         //Role inclusions
-        for(OWLObjectPropertyExpression[] axiom: normalization.getObjectPropertyInclusions())
-			addClauses(axiom);
+		Set<OWLAxiom> s = normalization.getTBoxAxioms(null);
+		for (OWLAxiom a: s)
+		{
+			//a.
+		}
+		
+		for (OWLObjectProperty a: normalization.getObjectPropertiesInSignature())
+		{
+			for (OWLSubObjectPropertyOfAxiom a1: normalization.getObjectSubPropertyAxiomsForSubProperty(a))
+			{
+				//a1.getObjectPropertiesInSignature();
+				addClauses(a1);
+			}
+		}
+		
+		for (OWLClass c: normalization.getClassesInSignature())
+		{
+			for (OWLSubClassOfAxiom a1: normalization.getSubClassAxiomsForSubClass(c))
+			{
+				addClauses(a1);
+			}
+		}
+		
+        //for(OWLObjectPropertyExpression[] axiom: n.getObjectPropertyInclusions())
+		//	addClauses(axiom);
 
 		//Concept inclusions
-        for(OWLDescription[] axiom: normalization.getConceptInclusions())
-			addClauses(axiom);
+        //for(OWLClassExpression[] axiom: normalization.getConceptInclusions())
+		//	addClauses(axiom);
 
         return axioms;
 	}
 
+	
+
+	
+
+	private void addClauses(OWLSubObjectPropertyOfAxiom axiom1)
+	{
+		OWLObjectPropertyExpression[] axiom = {axiom1.getSubProperty(), axiom1.getSuperProperty() };
+		
+		if(isValidObjectPropertyInclusion(axiom)){
+			String role0 = axiom[0].getNamedProperty().toString();
+			String role1 = axiom[1].getNamedProperty().toString();
+			if((!axiom[0].toString().contains("InverseOf") && axiom[1].toString().contains("InverseOf")) ||
+			   (axiom[0].toString().contains("InverseOf") && !axiom[1].toString().contains("InverseOf")))
+				//11: R -> S-, R- -> S
+				axioms.add(new PI(11, role0, role1));
+			else if((axiom[0].toString().contains("InverseOf") && axiom[1].toString().contains("InverseOf")) ||
+			       (!axiom[0].toString().contains("InverseOf") && !axiom[1].toString().contains("InverseOf")))
+				//10: R -> S, R- -> S-
+				axioms.add(new PI(10, role0, role1));
+		}
+		else{
+//			System.err.print("ignoring role inclusion: ");
+//        	for(int j=0; j<axiom.length; j++)
+//				System.err.print(axiom[j].toString() + " ");
+//            System.err.println();
+		}
+	}
 	/**
 	 * Converts an object property axiom into a DLlite axiom.
 	 * We only consider object property inclusions of the form R(-) -> S(-)
@@ -86,22 +154,30 @@ public class DLliteClausifier {
 		return axiom.length == 2 && !axiom[0].toString().equals("TopObjectProperty") && !axiom[1].toString().equals("TopObjectProperty");
     }
 
+    private void addClauses(OWLSubClassOfAxiom a1) 
+	{
+		// TODO Auto-generated method stub
+    	OWLClassExpression sub = a1.getSubClass();
+    	OWLClassExpression sup = a1.getSuperClass();
+    	OWLClassExpression[] e = { sub, sup };
+    	addClauses(e);
+	}
 	/**
 	 * Transforms a concept inclusion into a set of DLlite axioms.
 	 *
 	 * @param axiom the axiom to be converted.
 	 */
-	private void addClauses(OWLDescription[] axiom)
+	private void addClauses(OWLClassExpression[] axiom)
 	{
 		if(isValidClassInclusion(axiom)){
 
 			//\forall R.A (valid universal quantification axiom)
 			//4: \E P  -> A
 			//7: \E P- -> A
-			if(axiom.length == 1 && axiom[0] instanceof OWLObjectAllRestriction){
-				String role = ((OWLObjectAllRestriction) axiom[0]).getProperty().getNamedProperty().toString();
-				String fillerName = ((OWLObjectAllRestriction) axiom[0]).getFiller().toString();
-				if(!((OWLObjectAllRestriction) axiom[0]).getProperty().toString().contains("InverseOf"))
+			if(axiom.length == 1 && axiom[0] instanceof OWLObjectAllValuesFrom){
+				String role = ((OWLObjectAllValuesFrom) axiom[0]).getProperty().getNamedProperty().toString();
+				String fillerName = ((OWLObjectAllValuesFrom) axiom[0]).getFiller().toString();
+				if(!((OWLObjectAllValuesFrom) axiom[0]).getProperty().toString().contains("InverseOf"))
 					//7: \E R- -> A
 					axioms.add(new PI(7, role, fillerName));
 				else
@@ -109,16 +185,16 @@ public class DLliteClausifier {
 					axioms.add(new PI(4, role, fillerName));
 			}
 			else{
-				ArrayList<OWLDescription> rule = new ArrayList<OWLDescription>();
+				ArrayList<OWLClassExpression> rule = new ArrayList<OWLClassExpression>();
 
-				//Create an ArrayList of OWLDescription objects in which the head atom is in the first element
-				for(OWLDescription atom: axiom)
-					if(atom instanceof OWLObjectComplementOf || atom instanceof OWLObjectAllRestriction)
+				//Create an ArrayList of OWLClassExpression objects in which the head atom is in the first element
+				for(OWLClassExpression atom: axiom)
+					if(atom instanceof OWLObjectComplementOf || atom instanceof OWLObjectAllValuesFrom)
 						rule.add(atom);
 					else
 						rule.add(0, atom);
-				OWLDescription head = rule.get(0);
-				OWLDescription body = rule.get(1).getComplementNNF();
+				OWLClassExpression head = rule.get(0);
+				OWLClassExpression body = rule.get(1).getComplementNNF();
 
 				String left, right;
 
@@ -138,9 +214,9 @@ public class DLliteClausifier {
 					}
 
 					//body of the form: \E R
-					else if(body instanceof OWLObjectSomeRestriction){
-						OWLDescription filler = ((OWLObjectSomeRestriction) body).getFiller();
-						OWLObjectPropertyExpression property = ((OWLObjectSomeRestriction) body).getProperty();
+					else if(body instanceof OWLObjectSomeValuesFrom){
+						OWLClassExpression filler = ((OWLObjectSomeValuesFrom) body).getFiller();
+						OWLObjectPropertyExpression property = ((OWLObjectSomeValuesFrom) body).getProperty();
 						left = property.getNamedProperty().toString();
 
 						if(filler.toString().equals("ObjectComplementOf(Nothing)")){
@@ -162,9 +238,9 @@ public class DLliteClausifier {
 				}
 
 				//head of the form: \E R.C
-				else if(head instanceof OWLObjectSomeRestriction){
-					OWLDescription filler = ((OWLObjectSomeRestriction) head).getFiller();
-					OWLObjectPropertyExpression property = ((OWLObjectSomeRestriction) head).getProperty();
+				else if(head instanceof OWLObjectSomeValuesFrom){
+					OWLClassExpression filler = ((OWLObjectSomeValuesFrom) head).getFiller();
+					OWLObjectPropertyExpression property = ((OWLObjectSomeValuesFrom) head).getProperty();
 
 					right = property.getNamedProperty().toString();
 
@@ -191,9 +267,9 @@ public class DLliteClausifier {
 							}
 
 							//body of the form: \E R
-							else if(body instanceof OWLObjectSomeRestriction){
-								OWLDescription fillerB = ((OWLObjectSomeRestriction) body).getFiller();
-								OWLObjectPropertyExpression propertyB = ((OWLObjectSomeRestriction) body).getProperty();
+							else if(body instanceof OWLObjectSomeValuesFrom){
+								OWLClassExpression fillerB = ((OWLObjectSomeValuesFrom) body).getFiller();
+								OWLObjectPropertyExpression propertyB = ((OWLObjectSomeValuesFrom) body).getProperty();
 								left = propertyB.getNamedProperty().toString();
 
 								//No qualified existential quantification in the body
@@ -221,9 +297,9 @@ public class DLliteClausifier {
 						}
 
 						//body of the form: \E R
-						else if(body instanceof OWLObjectSomeRestriction){
-							OWLDescription fillerB = ((OWLObjectSomeRestriction) body).getFiller();
-							OWLObjectPropertyExpression propertyB = ((OWLObjectSomeRestriction) body).getProperty();
+						else if(body instanceof OWLObjectSomeValuesFrom){
+							OWLClassExpression fillerB = ((OWLObjectSomeValuesFrom) body).getFiller();
+							OWLObjectPropertyExpression propertyB = ((OWLObjectSomeValuesFrom) body).getProperty();
 							left = propertyB.getNamedProperty().toString();
 
 							//No qualified existential quantification in the body
@@ -257,9 +333,9 @@ public class DLliteClausifier {
 						}
 
 						//body of the form: \E R
-						else if(body instanceof OWLObjectSomeRestriction){
-							OWLDescription fillerB = ((OWLObjectSomeRestriction) body).getFiller();
-							OWLObjectPropertyExpression propertyB = ((OWLObjectSomeRestriction) body).getProperty();
+						else if(body instanceof OWLObjectSomeValuesFrom){
+							OWLClassExpression fillerB = ((OWLObjectSomeValuesFrom) body).getFiller();
+							OWLObjectPropertyExpression propertyB = ((OWLObjectSomeValuesFrom) body).getProperty();
 							left = propertyB.getNamedProperty().toString();
 
 							if(fillerB.toString().equals("ObjectComplementOf(Nothing)")){
@@ -294,9 +370,9 @@ public class DLliteClausifier {
 					}
 
 					//body of the form: \E R
-					else if(body instanceof OWLObjectSomeRestriction){
-						OWLDescription fillerB = ((OWLObjectSomeRestriction) body).getFiller();
-						OWLObjectPropertyExpression propertyB = ((OWLObjectSomeRestriction) body).getProperty();
+					else if(body instanceof OWLObjectSomeValuesFrom){
+						OWLClassExpression fillerB = ((OWLObjectSomeValuesFrom) body).getFiller();
+						OWLObjectPropertyExpression propertyB = ((OWLObjectSomeValuesFrom) body).getProperty();
 						left = propertyB.getNamedProperty().toString();
 
 						if(fillerB.toString().equals("ObjectComplementOf(Nothing)")){
@@ -338,28 +414,28 @@ public class DLliteClausifier {
 	 * @param axiom
 	 * @return
 	 */
-	private boolean isValidClassInclusion(OWLDescription[] axiom){
+	private boolean isValidClassInclusion(OWLClassExpression[] axiom){
 		int i = 0;
 
 		//T \implies \forall R.C
-		if(axiom.length == 1 && axiom[0] instanceof OWLObjectAllRestriction)
+		if(axiom.length == 1 && axiom[0] instanceof OWLObjectAllValuesFrom)
 			return true;
 
 		if(axiom.length != 2)
 			return false;
 
-		for(OWLDescription atom: axiom){
+		for(OWLClassExpression atom: axiom){
 
 			// Checking that each atom is of valid form
 			if(!(atom instanceof OWLClass ||
 				 atom instanceof OWLObjectComplementOf ||
-				 atom instanceof OWLObjectSomeRestriction ||
-				 atom instanceof OWLObjectAllRestriction))
+				 atom instanceof OWLObjectSomeValuesFrom ||
+				 atom instanceof OWLObjectAllValuesFrom))
 				return false;
 
 			// Counting occurrences of negated literals to verify Hornness
 			if( atom instanceof OWLObjectComplementOf ||
-				atom instanceof OWLObjectAllRestriction)
+				atom instanceof OWLObjectAllValuesFrom)
 				i++;
 		}
 

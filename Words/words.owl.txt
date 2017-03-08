@@ -1,0 +1,693 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.ivdnt.org/diamant/diamant.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://www.ivdnt.org/diamant/diamant.owl">
+    <Prefix name="" IRI="http://meraka/moss/exampleBooks.owl#"/>
+    <Prefix name="p" IRI="/"/>
+    <Prefix name="bf" IRI="http://id.loc.gov/ontologies/bibframe/"/>
+    <Prefix name="cl" IRI="http://purl.obolibrary.org/obo/cl#"/>
+    <Prefix name="dc" IRI="http://purl.org/dc/elements/1.1/"/>
+    <Prefix name="di" IRI="http://www.omg.org/spec/DD/20100524/DI"/>
+    <Prefix name="dl" IRI="http://ontology.dumontierlab.com/"/>
+    <Prefix name="gr" IRI="http://purl.org/goodrelations/v1#"/>
+    <Prefix name="sm" IRI="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
+    <Prefix name="vs" IRI="http://www.w3.org/2003/06/sw-vocab-status/ns#"/>
+    <Prefix name="xs" IRI="http://www.w3.org/2001/XMLSchema"/>
+    <Prefix name="dbo" IRI="http://dbpedia.org/ontology/"/>
+    <Prefix name="dbp" IRI="http://dbpedia.org/property/"/>
+    <Prefix name="dbr" IRI="http://dbpedia.org/resource/"/>
+    <Prefix name="dct" IRI="http://purl.org/dc/terms/"/>
+    <Prefix name="dol" IRI="http://www.omg.org/spec/DOL/DOL-terms/"/>
+    <Prefix name="ext" IRI="http://org.eclipse.bpmn2/ext"/>
+    <Prefix name="fma" IRI="http://purl.obolibrary.org/obo/fma#"/>
+    <Prefix name="geo" IRI="http://www.geonames.org/ontology#"/>
+    <Prefix name="j.0" IRI="http://vocabulary.smartlogic.com/NFLT/nflt#"/>
+    <Prefix name="j.1" IRI="http://purl.org/dc/terms/"/>
+    <Prefix name="j.2" IRI="http://topbraid.org/teamwork#"/>
+    <Prefix name="j.3" IRI="http://www.smartlogic.com/2014/08/semaphore-core#"/>
+    <Prefix name="j.4" IRI="http://vocabulary.smartlogic.com/NFLT/Relationship#"/>
+    <Prefix name="j.5" IRI="http://www.w3.org/2008/05/skos-xl#"/>
+    <Prefix name="j.6" IRI="http://spinrdf.org/spin#"/>
+    <Prefix name="j.7" IRI="http://vocabulary.smartlogic.com/NFLT/Metadata#Scope+"/>
+    <Prefix name="kaa" IRI="http://kenchreai.org/kaa/"/>
+    <Prefix name="leo" IRI="http://linkedevents.org/ontology/"/>
+    <Prefix name="ler" IRI="http://linkedevents.org/resource/"/>
+    <Prefix name="mus" IRI="http://data.doremus.org/ontology#"/>
+    <Prefix name="nif" IRI="http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core"/>
+    <Prefix name="ns0" IRI="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
+    <Prefix name="ns1" IRI="http://www.uniandes.web.semantica.ejemplo.org/voca#enseÃ±"/>
+    <Prefix name="ns2" IRI="http://www.uniandes.web.semantica.ejemplo.org/voca#"/>
+    <Prefix name="obo" IRI="http://purl.obolibrary.org/obo/"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="pwn" IRI="http://wordnet-rdf.princeton.edu/ontology#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="srs" IRI="http://srs/ontologies/srs.owl#"/>
+    <Prefix name="ssn" IRI="http://purl.oclc.org/NET/ssnx/ssn"/>
+    <Prefix name="vin" IRI="http://www.w3.org/TR/2003/PR-owl-guide-20031209/wine#"/>
+    <Prefix name="wot" IRI="http://xmlns.com/wot/0.1/"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="xsi" IRI="http://www.w3.org/2001/XMLSchema-instance"/>
+    <Prefix name="xsp" IRI="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"/>
+    <Prefix name="core" IRI="http://purl.obolibrary.org/obo/uberon/core#"/>
+    <Prefix name="daml" IRI="http://www.daml.org/2001/03/daml+oil#"/>
+    <Prefix name="dcam" IRI="http://purl.org/dc/dcam/"/>
+    <Prefix name="doap" IRI="http://usefulinc.com/ns/doap#"/>
+    <Prefix name="doid" IRI="http://purl.obolibrary.org/obo/doid#"/>
+    <Prefix name="ecrm" IRI="http://erlangen-crm.org/current/"/>
+    <Prefix name="foaf" IRI="http://xmlns.com/foaf/0.1/"/>
+    <Prefix name="food" IRI="http://www.w3.org/TR/2003/PR-owl-guide-20031209/food#"/>
+    <Prefix name="geoR" IRI="http://www.mindswap.org/2003/owl/geo/geoRelations.owl#"/>
+    <Prefix name="ical" IRI="http://www.w3.org/2002/12/cal/ical#"/>
+    <Prefix name="norm" IRI="http://www.estrellaproject.org/lkif-core/norm.owl#"/>
+    <Prefix name="obo1" IRI="http://data.bioontology.org/metadata/obo/"/>
+    <Prefix name="obo2" IRI="http://data.bioontology.org/metadata/obo/"/>
+    <Prefix name="obo3" IRI="http://www.geneontology.org/formats/oboInOwl#http://purl.obolibrary.org/obo/"/>
+    <Prefix name="owl2" IRI="http://www.w3.org/2006/12/owl2#"/>
+    <Prefix name="qudt" IRI="http://qudt.org/schema/qudt#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="skos" IRI="http://www.w3.org/2004/02/skos/core#"/>
+    <Prefix name="swrl" IRI="http://www.w3.org/2003/11/swrl#"/>
+    <Prefix name="time" IRI="http://www.w3.org/2006/time#"/>
+    <Prefix name="umls" IRI="http://bioportal.bioontology.org/ontologies/umls/"/>
+    <Prefix name="unit" IRI="http://qudt.org/vocab/unit#"/>
+    <Prefix name="vaem" IRI="http://www.linkedmodel.org/schema/vaem#"/>
+    <Prefix name="vann" IRI="http://purl.org/vocab/vann/"/>
+    <Prefix name="voag" IRI="http://voag.linkedmodel.org/schema/voag#"/>
+    <Prefix name="void" IRI="http://rdfs.org/ns/void#"/>
+    <Prefix name="yago" IRI="http://dbpedia.org/class/yago/"/>
+    <Prefix name="bpmn2" IRI="http://www.omg.org/spec/BPMN/20100524/MODEL"/>
+    <Prefix name="core1" IRI="http://purl.obolibrary.org/obo/core#"/>
+    <Prefix name="core2" IRI="http://purl.obolibrary.org/obo/uberon/core#"/>
+    <Prefix name="kaake" IRI="http://kenchreai.org/kaa/ke/"/>
+    <Prefix name="lemon" IRI="http://lemon-model.net/lemon#"/>
+    <Prefix name="lrole" IRI="http://www.estrellaproject.org/lkif-core/legal-role.owl#"/>
+    <Prefix name="myont" IRI="http://www.myontologies.net/lousou/2016/reptiles#"/>
+    <Prefix name="ncicp" IRI="http://ncicb.nci.nih.gov/xml/owl/EVS/ComplexProperties.xsd#"/>
+    <Prefix name="owl11" IRI="http://www.w3.org/2006/12/owl11#"/>
+    <Prefix name="pizza" IRI="http://www.co-ode.org/ontologies/pizza/pizza.owl#"/>
+    <Prefix name="quest" IRI="http://obda.org/quest#"/>
+    <Prefix name="rules" IRI="http://www.estrellaproject.org/lkif-core/lkif-rules.owl#"/>
+    <Prefix name="swrla" IRI="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"/>
+    <Prefix name="swrlb" IRI="http://www.w3.org/2003/11/swrlb#"/>
+    <Prefix name="swrlx" IRI="http://www.w3.org/2003/11/swrlx#"/>
+    <Prefix name="terms" IRI="http://purl.org/dc/terms/"/>
+    <Prefix name="tzont" IRI="http://www.w3.org/2006/timezone#"/>
+    <Prefix name="umbel" IRI="http://umbel.org/umbel/sc/"/>
+    <Prefix name="wgs84" IRI="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
+    <Prefix name="bpmndi" IRI="http://www.omg.org/spec/BPMN/20100524/DI"/>
+    <Prefix name="dcterm" IRI="http://purl.org/dc/terms/"/>
+    <Prefix name="dctype" IRI="http://purl.org/dc/dcmitype/"/>
+    <Prefix name="isocat" IRI="http://www.isocat.org/ns/dcr.rdf#"/>
+    <Prefix name="kaakcp" IRI="http://kenchreai.org/kaa/kcp/"/>
+    <Prefix name="kaakth" IRI="http://kenchreai.org/kaa/kth/"/>
+    <Prefix name="kaaont" IRI="http://kenchreai.org/kaa/ontology/"/>
+    <Prefix name="kaatyp" IRI="http://kenchreai.org/kaa/typology/"/>
+    <Prefix name="locont" IRI="http://webmind.dico.unimi.it/CARE/locont.owl#"/>
+    <Prefix name="ubprop" IRI="http://purl.obolibrary.org/obo/ubprop#"/>
+    <Prefix name="unspsc" IRI="http://ontoview.org/schema/unspsc/1#"/>
+    <Prefix name="Concept" IRI="http://www.selisproject.eu/terminology/Concept/"/>
+    <Prefix name="Default" IRI="http://www.selisproject.eu/terminology/Default/"/>
+    <Prefix name="dcterms" IRI="http://dublincore.org/2012/06/14/dcterms.ttl"/>
+    <Prefix name="diamant" IRI="http://www.ivdnt.org/diamant#"/>
+    <Prefix name="efrbroo" IRI="http://erlangen-crm.org/efrbroo/"/>
+    <Prefix name="laction" IRI="http://www.estrellaproject.org/lkif-core/legal-action.owl#"/>
+    <Prefix name="lexinfo" IRI="http://www.lexinfo.net/ontology/2.0/lexinfo#"/>
+    <Prefix name="ontolex" IRI="http://www.w3.org/ns/lemon/ontolex"/>
+    <Prefix name="owl2xml" IRI="http://www.w3.org/2006/12/owl2-xml#"/>
+    <Prefix name="protege" IRI="http://protege.stanford.edu/plugins/owl/protege#"/>
+    <Prefix name="stardog" IRI="tag:stardog:api:"/>
+    <Prefix name="dcmitype" IRI="http://purl.org/dc/dcmitype/"/>
+    <Prefix name="kaachron" IRI="http://kenchreai.org/kaa/historical-chronology/"/>
+    <Prefix name="metadata" IRI="http://data.bioontology.org/metadata/"/>
+    <Prefix name="oboInOwl" IRI="http://www.geneontology.org/formats/oboInOwl#"/>
+    <Prefix name="ontology" IRI="http://example.org/ontology#"/>
+    <Prefix name="owl11xml" IRI="http://www.w3.org/2006/12/owl11-xml#"/>
+    <Prefix name="qudt-1.1" IRI="http://qudt.org/1.1/schema/qudt#"/>
+    <Prefix name="relation" IRI="http://www.selisproject.eu/terminology/relation/"/>
+    <Prefix name="resource" IRI="http://semanticscience.org/resource/"/>
+    <Prefix name="temporal" IRI="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#"/>
+    <Prefix name="timezone" IRI="http://www.w3.org/2006/timezone#"/>
+    <Prefix name="marinetlo" IRI="http://www.ics.forth.gr/isl/ontology/MarineTLO/"/>
+    <Prefix name="university" IRI="http://university/ontologies/university.owl#"/>
+    <Prefix name="ace_lexicon" IRI="http://attempto.ifi.uzh.ch/ace_lexicon#"/>
+    <Prefix name="modification" IRI="http://www.estrellaproject.org/lkif-core/time-modification.owl#"/>
+    <Prefix name="photography2" IRI="http://www.co-ode.org/ontologies/photography/photography.owl#4"/>
+    <Prefix name="photography3" IRI="http://www.co-ode.org/ontologies/photography/photography.owl#35-55"/>
+    <Prefix name="photography4" IRI="http://www.co-ode.org/ontologies/photography/photography.owl#35"/>
+    <Prefix name="photography5" IRI="http://www.co-ode.org/ontologies/photography/photography.owl#120"/>
+    <Prefix name="photography6" IRI="http://www.co-ode.org/ontologies/photography/photography.owl#18"/>
+    <Prefix name="photography7" IRI="http://www.co-ode.org/ontologies/photography/photography.owl#80"/>
+    <Prefix name="photography8" IRI="http://www.co-ode.org/ontologies/photography/photography.owl#135"/>
+    <Prefix name="photography9" IRI="http://www.co-ode.org/ontologies/photography/photography.owl#20-100"/>
+    <Prefix name="qudt-quantity" IRI="http://qudt.org/vocab/quantity#"/>
+    <Prefix name="qudt-unit-1.1" IRI="http://qudt.org/1.1/vocab/unit#"/>
+    <Prefix name="ctd_vocabulary" IRI="http://bio2rdf.org/drugbank_vocabulary:"/>
+    <Prefix name="fibo-fnd-dt-fd" IRI="http://www.omg.org/spec/EDMC-FIBO/FND/DatesAndTimes/FinancialDates/"/>
+    <Prefix name="qudt-dimension" IRI="http://qudt.org/vocab/dimension#"/>
+    <Prefix name="user_behaviour" IRI="http://www.sme-ecompass.eu/ontologies/2014/6/user_behaviour.owl#"/>
+    <Prefix name="fibo-fnd-arr-id" IRI="http://www.omg.org/spec/EDMC-FIBO/FND/Arrangements/IdentifiersAndIndices/"/>
+    <Prefix name="fibo-fnd-org-fm" IRI="http://www.omg.org/spec/EDMC-FIBO/FND/Organizations/FormalOrganizations/"/>
+    <Prefix name="fibo-fnd-utl-av" IRI="http://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/"/>
+    <Prefix name="fibo-fnd-utl-bt" IRI="http://www.omg.org/spec/EDMC-FIBO/FND/Utilities/BusinessFacingTypes/"/>
+    <Prefix name="fibo-fnd-aap-agt" IRI="http://www.omg.org/spec/EDMC-FIBO/FND/AgentsAndPeople/Agents/"/>
+    <Prefix name="fibo-fnd-aap-ppl" IRI="http://www.omg.org/spec/EDMC-FIBO/FND/AgentsAndPeople/People/"/>
+    <Prefix name="fibo-fnd-arr-doc" IRI="http://www.omg.org/spec/EDMC-FIBO/FND/Arrangements/Documents/"/>
+    <Prefix name="fibo-fnd-plc-adr" IRI="http://www.omg.org/spec/EDMC-FIBO/FND/Places/Addresses/"/>
+    <Prefix name="fibo-fnd-plc-cty" IRI="http://www.omg.org/spec/EDMC-FIBO/FND/Places/Countries/"/>
+    <Prefix name="fibo-fnd-plc-loc" IRI="http://www.omg.org/spec/EDMC-FIBO/FND/Places/Locations/"/>
+    <Prefix name="fibo-fnd-rel-rel" IRI="http://www.omg.org/spec/EDMC-FIBO/FND/Relations/Relations/"/>
+    <Prefix name="f_Quran_ontology5" IRI="http://www.comp.leeds.ac.uk/ml10sma/files/2015/11/0.1/f_Quran_ontology5.owl#"/>
+    <Prefix name="visitor_behaviour" IRI="http://www.sme-ecompass.eu/ontologies/visitor_behaviour.owl#"/>
+    <Prefix name="Ontology1415135201" IRI="http://www.owl-ontologies.com/Ontology1415135201.owl#"/>
+    <Prefix name="drugbank_vocabulary" IRI="http://bio2rdf.org/drugbank_vocabulary:9"/>
+    <Prefix name="untitled-ontology-9" IRI="http://www.semanticweb.org/jalex/ontologies/2017/1/untitled-ontology-9#"/>
+    <Prefix name="SmartHomeOntologyRDF" IRI="file://localhost/D:/Darpan/Year 5 - MSc/Semister 3/Submission/MobileSmartHome/Webservice/SmartHomeOntologyRDF.owl#"/>
+    <Prefix name="drugbank_vocabulary2" IRI="http://bio2rdf.org/drugbank_vocabulary:63"/>
+    <Prefix name="drugbank_vocabulary3" IRI="http://bio2rdf.org/drugbank_vocabulary:328031204"/>
+    <Prefix name="drugbank_vocabulary4" IRI="http://bio2rdf.org/drugbank_vocabulary:38"/>
+    <Prefix name="drugbank_vocabulary5" IRI="http://bio2rdf.org/drugbank_vocabulary:0159511"/>
+    <Prefix name="drugbank_vocabulary6" IRI="http://bio2rdf.org/drugbank_vocabulary:1210774"/>
+    <Prefix name="drugbank_vocabulary7" IRI="http://bio2rdf.org/drugbank_vocabulary:5"/>
+    <Prefix name="drugbank_vocabulary8" IRI="http://bio2rdf.org/drugbank_vocabulary:69"/>
+    <Prefix name="drugbank_vocabulary9" IRI="http://bio2rdf.org/drugbank_vocabulary:2"/>
+    <Prefix name="untitled-ontology-41" IRI="http://www.semanticweb.org/nazifakarima/ontologies/2017/1/untitled-ontology-41#"/>
+    <Prefix name="computationalenvironment" IRI="http://dase.cs.wright.edu/ontologies/ComputationalEnvironment#"/>
+    <Declaration>
+        <Class IRI="http://dublincore.org/2012/06/14/dcterms.ttlAgent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://dublincore.org/2012/06/14/dcterms.ttlBibliographicResource"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://dublincore.org/2012/06/14/dcterms.ttlLocation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://dublincore.org/2012/06/14/dcterms.ttlPeriodOfTime"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="lemon:Form"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="lemon:LexicalConcept"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="lemon:LexicalEntry"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="lemon:LexicalSense"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="lemon:UsageExample"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="diamant:LexicalPhenomenon"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="diamant:Locus"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="diamant:Quotation"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="diamant:Text"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="diamant:mannelijk"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="diamant:onzijdig"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="diamant:openWordClass"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="diamant:tweeslachtig"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="diamant:vrouwelijk"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="diamant:ww"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="diamant:znw"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="skos:Concept"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://dublincore.org/2012/06/14/dcterms.ttlcreator"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://dublincore.org/2012/06/14/dcterms.ttlspatial"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://dublincore.org/2012/06/14/dcterms.ttltemporal"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="lemon:hasForm"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="lemon:isLexicalizedSenseOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="lemon:lexicalizedSense"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="lemon:reference"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="lemon:sense"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="lemon:subsense"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="diamant:antonym"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="diamant:attestation"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="diamant:author"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="diamant:hyperonym"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="diamant:hyponym"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="diamant:synonym"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="diamant:text"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="diamant:witness"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="lexinfo:partOfSpeech"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="skos:semanticRelation"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="http://dublincore.org/2012/06/14/dcterms.ttltitle"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="lemon:representation"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="lemon:value"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="pwn:part_of_speech"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="diamant:endDate"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="diamant:exampleText"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="diamant:hyphenation"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="diamant:startDate"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="rdfs:label"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class abbreviatedIRI="diamant:closedWordClass"/>
+        <ObjectUnionOf>
+            <Class abbreviatedIRI="lexinfo:adposition"/>
+            <Class abbreviatedIRI="lexinfo:conjunction"/>
+            <Class abbreviatedIRI="lexinfo:interjection"/>
+            <Class abbreviatedIRI="lexinfo:pronoun"/>
+        </ObjectUnionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class abbreviatedIRI="diamant:mannelijk"/>
+        <Class abbreviatedIRI="lexinfo:male"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class abbreviatedIRI="diamant:onzijdig"/>
+        <Class abbreviatedIRI="lexinfo:neuter"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class abbreviatedIRI="diamant:tweeslachtig"/>
+        <ObjectIntersectionOf>
+            <Class abbreviatedIRI="diamant:mannelijk"/>
+            <Class abbreviatedIRI="diamant:vrouwelijk"/>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class abbreviatedIRI="diamant:voorzetsel"/>
+        <Class abbreviatedIRI="lexinfo:adposition"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class abbreviatedIRI="diamant:vrouwelijk"/>
+        <Class abbreviatedIRI="lexinfo:female"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class abbreviatedIRI="diamant:werkwoord"/>
+        <Class abbreviatedIRI="diamant:ww"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class abbreviatedIRI="diamant:ww"/>
+        <Class abbreviatedIRI="lexinfo:verb"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class abbreviatedIRI="diamant:zelfstandig_naamwoord"/>
+        <Class abbreviatedIRI="diamant:znw"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class abbreviatedIRI="diamant:znw"/>
+        <Class abbreviatedIRI="lexinfo:noun"/>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class abbreviatedIRI="lemon:Form"/>
+        <Class abbreviatedIRI="diamant:Word"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="lemon:LexicalConcept"/>
+        <Class abbreviatedIRI="skos:Concept"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="lemon:LexicalEntry"/>
+        <Class abbreviatedIRI="diamant:Word"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="lemon:LexicalEntry"/>
+        <ObjectMinCardinality cardinality="1">
+            <ObjectProperty abbreviatedIRI="lemon:hasForm"/>
+        </ObjectMinCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="lemon:LexicalSense"/>
+        <Class abbreviatedIRI="diamant:LexicalPhenomenon"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="lemon:Word"/>
+        <Class abbreviatedIRI="diamant:LexicalPhenomenon"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="diamant:Locus"/>
+        <Class abbreviatedIRI="lemon:UsageExample"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="diamant:Quotation"/>
+        <Class abbreviatedIRI="diamant:Text"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="diamant:Text"/>
+        <Class IRI="http://dublincore.org/2012/06/14/dcterms.ttlBibliographicResource"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="lexinfo:adposition"/>
+        <Class abbreviatedIRI="diamant:closedWordClass"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="lexinfo:conjunction"/>
+        <Class abbreviatedIRI="diamant:closedWordClass"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="lexinfo:interjection"/>
+        <Class abbreviatedIRI="diamant:closedWordClass"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="lexinfo:pronoun"/>
+        <Class abbreviatedIRI="diamant:closedWordClass"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class abbreviatedIRI="lemon:Form"/>
+        <Class abbreviatedIRI="lemon:LexicalEntry"/>
+    </DisjointClasses>
+    <EquivalentObjectProperties>
+        <ObjectProperty abbreviatedIRI="diamant:hyperonym"/>
+        <ObjectProperty abbreviatedIRI="skos:broader"/>
+    </EquivalentObjectProperties>
+    <EquivalentObjectProperties>
+        <ObjectProperty abbreviatedIRI="diamant:hyponym"/>
+        <ObjectProperty abbreviatedIRI="skos:narrower"/>
+    </EquivalentObjectProperties>
+    <EquivalentObjectProperties>
+        <ObjectProperty abbreviatedIRI="diamant:synonym"/>
+        <ObjectProperty abbreviatedIRI="skos:closeMatch"/>
+    </EquivalentObjectProperties>
+    <SubObjectPropertyOf>
+        <ObjectProperty abbreviatedIRI="lemon:example"/>
+        <ObjectProperty abbreviatedIRI="diamant:attestation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty abbreviatedIRI="lemon:isLexicalizedSenseOf"/>
+        <ObjectProperty abbreviatedIRI="lemon:reference"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty abbreviatedIRI="diamant:antonym"/>
+        <ObjectProperty abbreviatedIRI="skos:semanticRelation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty abbreviatedIRI="diamant:author"/>
+        <ObjectProperty IRI="http://dublincore.org/2012/06/14/dcterms.ttlcreator"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty abbreviatedIRI="diamant:hyperonym"/>
+        <ObjectProperty abbreviatedIRI="skos:semanticRelation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty abbreviatedIRI="diamant:hyponym"/>
+        <ObjectProperty abbreviatedIRI="skos:semanticRelation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty abbreviatedIRI="diamant:synonym"/>
+        <ObjectProperty abbreviatedIRI="skos:semanticRelation"/>
+    </SubObjectPropertyOf>
+    <InverseObjectProperties>
+        <ObjectProperty abbreviatedIRI="lemon:lexicalizedSense"/>
+        <ObjectProperty abbreviatedIRI="lemon:isLexicalizedSenseOf"/>
+    </InverseObjectProperties>
+    <TransitiveObjectProperty>
+        <ObjectProperty abbreviatedIRI="lemon:subsense"/>
+    </TransitiveObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="http://dublincore.org/2012/06/14/dcterms.ttlcreator"/>
+        <Class IRI="http://dublincore.org/2012/06/14/dcterms.ttlBibliographicResource"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="http://dublincore.org/2012/06/14/dcterms.ttlspatial"/>
+        <Class IRI="http://dublincore.org/2012/06/14/dcterms.ttlBibliographicResource"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="http://dublincore.org/2012/06/14/dcterms.ttltemporal"/>
+        <Class IRI="http://dublincore.org/2012/06/14/dcterms.ttlBibliographicResource"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="lemon:hasForm"/>
+        <Class abbreviatedIRI="lemon:LexicalEntry"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="lemon:isLexicalizedSenseOf"/>
+        <Class abbreviatedIRI="lemon:LexicalSense"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="lemon:reference"/>
+        <Class abbreviatedIRI="lemon:LexicalSense"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="lemon:sense"/>
+        <Class abbreviatedIRI="lemon:LexicalEntry"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="lemon:sense"/>
+        <Class abbreviatedIRI="lemon:LexicalSense"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="diamant:attestation"/>
+        <Class abbreviatedIRI="diamant:LexicalPhenomenon"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="diamant:author"/>
+        <Class IRI="http://dublincore.org/2012/06/14/dcterms.ttlBibliographicResource"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="diamant:text"/>
+        <Class abbreviatedIRI="diamant:Locus"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="diamant:witness"/>
+        <Class abbreviatedIRI="diamant:Text"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="lexinfo:partOfSpeech"/>
+        <Class abbreviatedIRI="diamant:Word"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="skos:semanticRelation"/>
+        <Class abbreviatedIRI="skos:Concept"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="http://dublincore.org/2012/06/14/dcterms.ttlcreator"/>
+        <Class IRI="http://dublincore.org/2012/06/14/dcterms.ttlAgent"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="http://dublincore.org/2012/06/14/dcterms.ttlspatial"/>
+        <Class IRI="http://dublincore.org/2012/06/14/dcterms.ttlLocation"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="http://dublincore.org/2012/06/14/dcterms.ttltemporal"/>
+        <Class IRI="http://dublincore.org/2012/06/14/dcterms.ttlPeriodOfTime"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="lemon:hasForm"/>
+        <Class abbreviatedIRI="lemon:Form"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="lemon:reference"/>
+        <Class abbreviatedIRI="lemon:LexicalConcept"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="lemon:reference"/>
+        <Class abbreviatedIRI="skos:Concept"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="lemon:sense"/>
+        <Class abbreviatedIRI="lemon:LexicalSense"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="diamant:attestation"/>
+        <Class abbreviatedIRI="diamant:Locus"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="diamant:author"/>
+        <Class IRI="http://dublincore.org/2012/06/14/dcterms.ttlAgent"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="diamant:text"/>
+        <Class abbreviatedIRI="diamant:Text"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="diamant:witness"/>
+        <Class abbreviatedIRI="diamant:Text"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="lexinfo:partOfSpeech"/>
+        <Class abbreviatedIRI="lexinfo:PartOfSpeech"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="skos:semanticRelation"/>
+        <Class abbreviatedIRI="skos:Concept"/>
+    </ObjectPropertyRange>
+    <EquivalentDataProperties>
+        <DataProperty IRI="http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-corebeginIndex"/>
+        <DataProperty abbreviatedIRI="diamant:start"/>
+    </EquivalentDataProperties>
+    <EquivalentDataProperties>
+        <DataProperty IRI="http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-coreendIndex"/>
+        <DataProperty abbreviatedIRI="diamant:end"/>
+    </EquivalentDataProperties>
+    <SubDataPropertyOf>
+        <DataProperty abbreviatedIRI="diamant:exampleText"/>
+        <DataProperty abbreviatedIRI="lemon:value"/>
+    </SubDataPropertyOf>
+    <FunctionalDataProperty>
+        <DataProperty abbreviatedIRI="lemon:representation"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty abbreviatedIRI="pwn:part_of_speech"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty abbreviatedIRI="diamant:end"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty abbreviatedIRI="diamant:hyphenation"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty abbreviatedIRI="diamant:quotationText"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty abbreviatedIRI="diamant:start"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty abbreviatedIRI="rdfs:label"/>
+    </FunctionalDataProperty>
+    <DataPropertyDomain>
+        <DataProperty abbreviatedIRI="diamant:end"/>
+        <Class abbreviatedIRI="diamant:Locus"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty abbreviatedIRI="diamant:endDate"/>
+        <Class IRI="http://dublincore.org/2012/06/14/dcterms.ttlPeriodOfTime"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty abbreviatedIRI="diamant:exampleText"/>
+        <Class abbreviatedIRI="diamant:Locus"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty abbreviatedIRI="diamant:quotationText"/>
+        <Class abbreviatedIRI="diamant:Quotation"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty abbreviatedIRI="diamant:start"/>
+        <Class abbreviatedIRI="diamant:Locus"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty abbreviatedIRI="diamant:startDate"/>
+        <Class IRI="http://dublincore.org/2012/06/14/dcterms.ttlPeriodOfTime"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="http://dublincore.org/2012/06/14/dcterms.ttlendDate"/>
+        <Datatype abbreviatedIRI="xsd:date"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="http://dublincore.org/2012/06/14/dcterms.ttlstartDate"/>
+        <Datatype abbreviatedIRI="xsd:date"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="http://dublincore.org/2012/06/14/dcterms.ttltitle"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty abbreviatedIRI="lemon:representation"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty abbreviatedIRI="pwn:part_of_speech"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty abbreviatedIRI="diamant:end"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty abbreviatedIRI="diamant:hyphenation"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty abbreviatedIRI="diamant:quotationText"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty abbreviatedIRI="diamant:start"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty abbreviatedIRI="rdfs:label"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.4.5-SNAPSHOT) http://owlapi.sourceforge.net -->
+

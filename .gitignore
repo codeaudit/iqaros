@@ -5,3 +5,4 @@ dist
 .settings
 .DS_Store
 catalog-v*.xml
+/target/

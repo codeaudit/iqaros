@@ -1,0 +1,246 @@
+Prefix(:=<http://meraka/moss/exampleBooks.owl#>)
+Prefix(dc:=<http://purl.org/dc/elements/1.1/>)
+Prefix(dcterms:=<http://dublincore.org/2012/06/14/dcterms.ttl>)
+
+Prefix(j.1:=<http://purl.org/dc/terms/>)
+
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(pwn:=<http://wordnet-rdf.princeton.edu/ontology#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Prefix(quest:=<http://obda.org/quest#>)
+
+Prefix(skos:=<http://www.w3.org/2004/02/skos/core#>)
+Prefix(diamant:=<http://www.ivdnt.org/diamant#>)
+Prefix(lemon:=<http://lemon-model.net/lemon#>)
+Prefix(lexinfo:=<http://www.lexinfo.net/ontology/2.0/lexinfo#>)
+Prefix(ontolex:=<http://www.w3.org/ns/lemon/ontolex>)
+Prefix(nif:=<http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core>)
+Prefix(protege:=<http://protege.stanford.edu/plugins/owl/protege#>)
+
+
+
+Ontology(<http://www.ivdnt.org/diamant/diamant.owl>
+
+
+Declaration(Class(lemon:Form))
+Declaration(Class(lemon:LexicalEntry))
+Declaration(Class(diamant:mannelijk))
+Declaration(Class(diamant:onzijdig))
+Declaration(Class(diamant:openWordClass))
+Declaration(Class(diamant:tweeslachtig))
+Declaration(Class(diamant:vrouwelijk))
+Declaration(Class(diamant:ww))
+Declaration(Class(diamant:znw))
+Declaration(Class(owl:Thing))
+Declaration(Class(skos:Concept))
+Declaration(Class(lemon:LexicalEntry))
+Declaration(Class(lemon:LexicalSense))
+Declaration(Class(lemon:LexicalConcept))
+Declaration(Class(lemon:UsageExample))
+Declaration(Class(diamant:LexicalPhenomenon))
+Declaration(Class(diamant:Locus))
+Declaration(Class(diamant:Text))
+Declaration(Class(diamant:Quotation))
+Declaration(Class(lemon:LexicalConcept))
+
+
+
+Declaration(ObjectProperty(lemon:sense))
+	ObjectPropertyDomain(lemon:sense lemon:LexicalEntry)
+	ObjectPropertyRange(lemon:sense lemon:LexicalSense)
+	
+Declaration(ObjectProperty(lemon:subsense))
+	ObjectPropertyDomain(lemon:sense lemon:LexicalSense)
+	ObjectPropertyRange(lemon:sense lemon:LexicalSense)
+	TransitiveObjectProperty(lemon:subsense)
+	
+Declaration(ObjectProperty(lemon:reference))
+	ObjectPropertyDomain(lemon:reference lemon:LexicalSense)
+	ObjectPropertyRange(lemon:reference skos:Concept)
+
+
+	
+Declaration(ObjectProperty(lemon:isLexicalizedSenseOf))
+	ObjectPropertyDomain(lemon:isLexicalizedSenseOf lemon:LexicalSense)
+	ObjectPropertyRange(lemon:reference lemon:LexicalConcept)
+	SubObjectPropertyOf(lemon:isLexicalizedSenseOf lemon:reference)	
+
+Declaration(ObjectProperty(lemon:lexicalizedSense))
+	InverseObjectProperties(lemon:lexicalizedSense lemon:isLexicalizedSenseOf)	
+
+
+
+	
+Declaration(ObjectProperty(lemon:hasForm))
+	ObjectPropertyDomain(lemon:hasForm lemon:LexicalEntry)
+	ObjectPropertyRange(lemon:hasForm lemon:Form)
+	
+Declaration(ObjectProperty(lexinfo:partOfSpeech))
+	ObjectPropertyDomain(lexinfo:partOfSpeech diamant:Word)
+	ObjectPropertyRange(lexinfo:partOfSpeech lexinfo:PartOfSpeech)
+
+Declaration(ObjectProperty(skos:semanticRelation))
+	ObjectPropertyDomain(skos:semanticRelation skos:Concept)
+	ObjectPropertyRange(skos:semanticRelation skos:Concept)
+
+
+
+SubClassOf(diamant:Locus lemon:UsageExample)
+Declaration(DataProperty(diamant:exampleText))
+	SubDataPropertyOf(diamant:exampleText lemon:value)
+	DataPropertyDomain(diamant:exampleText diamant:Locus)
+
+Declaration(ObjectProperty(diamant:attestation))
+	ObjectPropertyDomain(diamant:attestation diamant:LexicalPhenomenon)
+	ObjectPropertyRange(diamant:attestation diamant:Locus)
+
+SubObjectPropertyOf(lemon:example diamant:attestation)	
+SubClassOf(diamant:Quotation diamant:Text)
+FunctionalDataProperty(diamant:quotationText)
+    DataPropertyDomain(diamant:quotationText diamant:Quotation)
+    DataPropertyRange(diamant:quotationText xsd:string)
+    
+FunctionalDataProperty(diamant:start)
+	DataPropertyDomain(diamant:start diamant:Locus)
+	DataPropertyRange(diamant:start xsd:integer)
+	
+FunctionalDataProperty(diamant:end)
+	DataPropertyDomain(diamant:end diamant:Locus)
+	DataPropertyRange(diamant:end xsd:integer)
+
+Declaration(ObjectProperty(diamant:text))
+    ObjectPropertyDomain(diamant:text diamant:Locus)
+    ObjectPropertyRange(diamant:text diamant:Text)
+
+Declaration(ObjectProperty(diamant:witness))
+    ObjectPropertyDomain(diamant:witness diamant:Text)
+    ObjectPropertyRange(diamant:witness diamant:Text)
+            
+
+
+
+
+Declaration(Class(dcterms:PeriodOfTime))
+Declaration(Class(dcterms:Location))
+Declaration(Class(dcterms:Agent))
+
+Declaration(Class(dcterms:BibliographicResource))
+	SubClassOf(diamant:Text dcterms:BibliographicResource)
+
+
+	
+Declaration(ObjectProperty(dcterms:temporal))
+ 	ObjectPropertyDomain(dcterms:temporal dcterms:BibliographicResource)
+    ObjectPropertyRange(dcterms:temporal dcterms:PeriodOfTime)
+    
+Declaration(ObjectProperty(dcterms:spatial))
+	ObjectPropertyDomain(dcterms:spatial dcterms:BibliographicResource)
+    ObjectPropertyRange(dcterms:spatial dcterms:Location)
+
+Declaration(ObjectProperty(dcterms:creator))
+	ObjectPropertyDomain(dcterms:creator dcterms:BibliographicResource)
+    ObjectPropertyRange(dcterms:creator dcterms:Agent)
+    
+Declaration(ObjectProperty(diamant:author))
+	ObjectPropertyDomain(diamant:author dcterms:BibliographicResource)
+    ObjectPropertyRange(diamant:author dcterms:Agent)
+	SubObjectPropertyOf(diamant:author dcterms:creator)
+	
+Declaration(DataProperty(dcterms:title))
+	DataPropertyRange(dcterms:title xsd:string)
+	
+Declaration(DataProperty(diamant:startDate))
+	DataPropertyDomain(diamant:startDate dcterms:PeriodOfTime)
+	DataPropertyRange(dcterms:startDate xsd:date)
+	
+Declaration(DataProperty(diamant:endDate))
+	DataPropertyDomain(diamant:endDate dcterms:PeriodOfTime)
+	DataPropertyRange(dcterms:endDate xsd:date)
+	
+    
+
+
+Declaration(ObjectProperty(diamant:synonym))
+	SubObjectPropertyOf(diamant:synonym skos:semanticRelation)
+
+Declaration(ObjectProperty(diamant:antonym))
+	SubObjectPropertyOf(diamant:antonym skos:semanticRelation)
+
+Declaration(ObjectProperty(diamant:hyponym))
+	SubObjectPropertyOf(diamant:hyponym skos:semanticRelation)
+
+Declaration(ObjectProperty(diamant:hyperonym))
+	SubObjectPropertyOf(diamant:hyperonym skos:semanticRelation)
+	
+	
+	
+
+Declaration(DataProperty(lemon:representation))
+Declaration(DataProperty(lemon:value))
+Declaration(DataProperty(pwn:part_of_speech))
+Declaration(DataProperty(diamant:hyphenation))
+Declaration(DataProperty(rdfs:label))
+
+
+
+
+FunctionalDataProperty(lemon:representation)
+DataPropertyRange(lemon:representation xsd:string)
+
+FunctionalDataProperty(pwn:part_of_speech)
+DataPropertyRange(pwn:part_of_speech xsd:string)
+
+FunctionalDataProperty(diamant:hyphenation)
+DataPropertyRange(diamant:hyphenation xsd:string)
+
+FunctionalDataProperty(rdfs:label)
+DataPropertyRange(rdfs:label xsd:string)
+
+
+
+SubClassOf(lemon:LexicalConcept skos:Concept)
+SubClassOf(lemon:Form diamant:Word)
+SubClassOf(lemon:LexicalEntry diamant:Word)
+SubClassOf(lemon:Word diamant:LexicalPhenomenon)
+SubClassOf(lemon:LexicalSense diamant:LexicalPhenomenon)
+
+DisjointClasses(lemon:Form lemon:LexicalEntry)
+
+SubClassOf(lemon:LexicalEntry ObjectMinCardinality(1 lemon:hasForm))
+
+
+EquivalentClasses(diamant:mannelijk lexinfo:male)
+EquivalentClasses(diamant:onzijdig lexinfo:neuter)
+
+EquivalentClasses(diamant:closedWordClass ObjectUnionOf(lexinfo:conjunction lexinfo:adposition lexinfo:interjection lexinfo:pronoun))
+
+
+SubClassOf(lexinfo:conjunction diamant:closedWordClass )
+SubClassOf(lexinfo:pronoun diamant:closedWordClass)
+SubClassOf(lexinfo:interjection diamant:closedWordClass)
+SubClassOf(lexinfo:adposition diamant:closedWordClass)
+
+EquivalentClasses(diamant:tweeslachtig ObjectIntersectionOf(diamant:vrouwelijk diamant:mannelijk))
+EquivalentClasses(diamant:vrouwelijk lexinfo:female)
+EquivalentClasses(diamant:werkwoord diamant:ww)
+EquivalentClasses(diamant:ww lexinfo:verb)
+EquivalentClasses(diamant:zelfstandig_naamwoord diamant:znw)
+EquivalentClasses(diamant:znw lexinfo:noun)
+EquivalentClasses(diamant:voorzetsel lexinfo:adposition)
+
+
+
+EquivalentObjectProperties(diamant:hyponym skos:narrower)
+EquivalentObjectProperties(diamant:hyperonym skos:broader)
+EquivalentObjectProperties(diamant:synonym skos:closeMatch)
+
+EquivalentDataProperties(diamant:start nif:beginIndex)
+EquivalentDataProperties(diamant:end nif:endIndex)
+
+)
