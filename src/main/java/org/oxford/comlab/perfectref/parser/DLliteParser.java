@@ -58,7 +58,7 @@ public class DLliteParser {
         
         //Clausify ontology
         DLliteClausifier clausification = new DLliteClausifier();
-        ArrayList<PI> axioms = clausification.getAxioms(ontology);
+        ArrayList<PI> axioms = clausification.getAxioms(oa);
 
         //Remove ontology from the ontology manager
         manager.removeOntology(ontology);

@@ -17,7 +17,7 @@ import org.semanticweb.owlapi.model.OWLObjectPropertyExpression;
 import org.semanticweb.owlapi.model.OWLObjectSomeValuesFrom;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 //import org.semanticweb.owlapi.model.OWLObjectSomeValuesFrom;
-
+import org.semanticweb.HermiT.structural.OWLAxioms;
 import org.semanticweb.HermiT.structural.OWLNormalization;
 
 import org.semanticweb.owlapi.model.OWLOntologyManager;
@@ -92,7 +92,18 @@ public class DLliteClausifier {
 	}
 
 	
-
+	public ArrayList<PI> getAxioms(OWLAxioms oa) {
+		axioms = new ArrayList<PI>();
+		for(OWLObjectPropertyExpression[] axiom: oa.m_simpleObjectPropertyInclusions)
+			addClauses(axiom);
+		//for(OWLObjectPropertyExpression[] axiom: oa.m_complexObjectPropertyInclusions)
+		//	addClauses(axiom);
+		
+		for(OWLClassExpression[] axiom: oa.m_conceptInclusions)
+		addClauses(axiom);
+		// TODO Auto-generated method stub
+		return axioms;
+	}
 	
 
 	private void addClauses(OWLSubObjectPropertyOfAxiom axiom1)
@@ -442,4 +453,10 @@ public class DLliteClausifier {
 		// Checking Hornness
 		return axiom.length == i+1;
 	}
+
+
+
+
+
+	
 }

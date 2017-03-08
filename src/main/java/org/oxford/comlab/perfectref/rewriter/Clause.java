@@ -562,7 +562,7 @@ public class Clause implements Comparable<Clause> {
         }
     }
 
-	@Override
+	//@Override
 	public int compareTo(Clause otherClause) {
 		return otherClause.getBody().length>getBody().length ? -1 : 1;
 	}
