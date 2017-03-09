@@ -1,1 +1,1 @@
-Q(?0) <- lemon:LexicalEntry(?0), lemon:hasForm(?0,?1), lexinfo:partOfspeech(?1,?2), diamant:closedWordClass(?2)
+Q(?0) <- LexicalEntry(?0), hasForm(?0,?1), partOfspeech(?1,?2), closedWordClass(?2)
