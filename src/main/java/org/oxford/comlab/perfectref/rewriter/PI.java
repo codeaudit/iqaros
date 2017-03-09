@@ -20,8 +20,8 @@ package org.oxford.comlab.perfectref.rewriter;
  */
 public class PI {
 	public final int m_type;
-    public final String m_left;
-    public final String m_right;
+    public String m_left;
+    public  String m_right;
 
     public PI(int type, String left, String right){
     	this.m_type = type;
