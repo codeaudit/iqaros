@@ -107,9 +107,15 @@ public class DLliteClausifier {
 		{
 			
 			if (pi.m_left != null)
+			{
 				pi.m_left = pi.m_left.replaceAll("[^<]*#" , "");
+				pi.m_left = pi.m_left.replaceAll("[<>]" , "");
+			}
 			if (pi.m_right != null)
+			{
 				pi.m_right = pi.m_right.replaceAll("[^<]*#" , "");
+				pi.m_right = pi.m_right.replaceAll("[<>]" , "");
+			}
 			System.err.println(pi.toString());
 		}
 		return axioms;
